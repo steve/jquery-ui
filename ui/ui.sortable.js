@@ -649,7 +649,7 @@ $.widget("ui.sortable", $.extend({}, $.ui.mouse, {
 			if(this._intersectsWith(this.containers[i].containerCache)) {
 				if(!this.containers[i].containerCache.over) {
 
-					if(this.currentContainer != this.containers[i]) {
+					if(this.currentContainer != this.containers[i] && this.containers[i].options.acceptDropFromConnectedList) {
 
 						//When entering a new container, we will find the item with the least distance and append our item near it
 						var dist = 10000; var itemWithLeastDistance = null; var base = this.positionAbs[this.containers[i].floating ? 'left' : 'top'];
@@ -991,6 +991,7 @@ $.extend($.ui.sortable, {
 	version: "@VERSION",
 	eventPrefix: "sort",
 	defaults: {
+		acceptDropFromConnectedList: true,
 		appendTo: "parent",
 		axis: false,
 		cancel: ":input,option",
